@@ -1,0 +1,421 @@
+/*******************************************************************/
+/* ELEMENTOS PRINCIPALES DE LA PÁGINA                              */
+/*******************************************************************/
+
+/* Elemento que contiene a todos los demás */
+#container {
+        width: 1250px;
+        margin: auto;
+        background-color: #D4E6F1;
+        border: 3px solid #000099;
+}
+
+header {
+        padding: 30px;
+        height: 130px;
+        background-color: #000099;
+        color: white;
+}
+
+footer {
+        clear: both;
+        padding: 30px;
+        background-color: #000099;
+        color: white;
+        text-align: center;
+        height: 35px;
+}
+
+/* Panel de navegación izquierdo utilizado en la tienda */
+nav#left {
+        width: 250px;
+        float: left;
+        background-color: #7FB3D5;
+        min-height: 655px;
+}
+
+/* Elemento con el contenido principal de la página (sin la cabecera, el panel de navegación y el pie de página) */
+#content {
+        border-top: 0px;
+        display: inline-block;
+        position: relative;
+        padding: 30px;
+}
+
+/*******************************************************************/
+/* MENÚ                                                            */
+/*******************************************************************/
+
+.menu li {
+        display: inline-block;
+        width: 150px;
+        height: 30px;
+        padding: 5px 10px;
+        background-color: #D3D3D3;
+        border: 1px solid #000;
+        text-align: center;
+        color: #fff;
+        position: relative;
+}
+
+.menu a {
+        text-decoration: none;
+        color: inherit;
+        font-size: 20px;
+}
+
+.menu li:hover {
+        background-color: #fff;
+        color: #000;
+}
+
+.menu li>ul {
+        display: none;
+
+}
+
+.menu li:hover>ul {
+        display: block;
+        position: absolute;
+        top: 40px;
+        left: 0px;
+        z-index: 1;
+}
+
+/*******************************************************************/
+/* FORMULARIO                                                      */
+/*******************************************************************/
+
+label {
+        display: block;
+}
+
+input {
+        margin-bottom: 10px;
+}
+
+form {
+        width: fit-content;
+        margin: auto;
+}
+
+/*******************************************************************/
+/* PORTADA DE LA PÁGINA (index.php)                                */
+/*******************************************************************/
+
+#index {
+        margin-left: 340px;
+        width: fit-content;
+}
+
+#index .panel {
+        width: 230px;
+        height: 230px;
+
+        display: inline-block;
+        border: 2px solid #000;
+        padding-left: 40px;
+}
+
+#index h1 {
+        margin-top: 20px;
+        font-size: 25px;
+}
+
+#index ol {
+        font-size: 20px;
+}
+
+#index a,
+#index a:link,
+#index a:visited,
+#index a:hover,
+#index a:active {
+        color: blue;
+}
+
+/*******************************************************************/
+/* TIENDA                                                          */
+/*******************************************************************/
+
+/* Panel donde se muestran los juegos/productos disponibles */
+#store #entries {
+        display: grid;
+        grid-template-columns: 195px 239px 194px;
+        grid-template-rows: 100px 100px;
+        place-items: center;
+}
+
+/*******************************************************************/
+/* VISTA DE UN PRODUCTO CONCRETO DE LA TIENDA                      */
+/*******************************************************************/
+
+/* Panel donde se muestran los datos de un determinado producto */
+#store #itemsView {
+        padding-top: 15px;
+        padding-left: 15px;
+        width: 900px;
+        height: 500px;
+        border: 3px solid #000;
+}
+
+/* Nombre del producto */
+#store #name {
+        margin-top: 0px;
+        margin-bottom: 0px;
+        font-size: 300%;
+        width: 400px;
+        height: 60px;
+        text-align: center;
+        background-color: brown;
+        color: lightyellow;
+        border: 3px solid lightcoral;
+}
+
+/* Usuario que vende el producto */
+#store #user {
+        margin-top: 15px;
+        margin-bottom: 0px;
+        font-size: 190%;
+        text-align: center;
+        font-family: monospace;
+        width: 500px;
+        height: 40px;
+        background-color: bisque;
+        color: chocolate;
+        border: 3px solid darkred;
+}
+
+/* Descripción del producto */
+#store #description {
+        margin-top: 15px;
+        text-align: center;
+        font-family: cursive;
+        color: coral;
+        width: 600px;
+        height: 50px;
+        background-color: cornsilk;
+        font-size: larger;
+}
+
+/* Precio del producto */
+#store #price {
+        top: 100px;
+        left: 700px;
+        position: absolute;
+        font-size: 190%;
+        font-family: system-ui;
+
+}
+
+/* Panel de los botones "Physical" / "Digital" */
+#store #buttons {
+        top: 185px;
+        left: 635px;
+        position: absolute;
+}
+
+/* Botón "Physical" / "Digital" */
+#store #buttons>button {
+        font-size: 190%;
+        text-align: center;
+        font-family: monospace;
+        width: 140px;
+        height: 90px;
+}
+
+/* Género de un juego */
+#store #genre {
+        top: 270px;
+        left: 675px;
+        position: absolute;
+        width: 200px;
+        height: 40px;
+        font-size: 190%;
+        text-align: center;
+        font-family: monospace;
+}
+
+/* Fecha de lanzamiento de un juego */
+#store #releaseDate {
+        top: 330px;
+        left: 700px;
+        position: absolute;
+        width: fit-content;
+        height: 10px;
+        font-size: 190%;
+        text-align: center;
+        font-family: monospace;
+}
+
+/*******************************************************************/
+/* PLANTILLA PARA MOSTRAR UNA LISTA DE ENTRADAS (DISCUSIONES...)   */
+/*******************************************************************/
+
+#entries {
+        margin-top: auto;
+        margin-left: 80px;
+        width: fit-content;
+}
+
+#entries .title {
+        text-align: center;
+}
+
+#entries .panel {
+        width: 500px;
+        height: auto;
+        display: inline-block;
+        background-color: #D4E6F1;
+        vertical-align: top;
+        padding-left: 15px;
+        padding-right: 15px;
+        padding-bottom: 15px;
+}
+
+#entries .entry {
+        border-style: outset;
+        background-color: #a9cce2;
+        padding-left: 15px;
+        padding-right: 15px;
+}
+
+#entries .entriesPanel {
+        border-style: inset;
+        background-color: #769aaf;
+}
+
+#entries .formPanel {
+        background-color: #D4E6F1;
+        padding-left: 15px;
+        padding-right: 15px;
+        text-align: center;
+        list-style-position: inside;
+        padding-bottom: 20px;
+}
+
+#entries .rightSpan {
+        float: right;
+        text-align: left;
+}
+
+#entries h4,
+#entries p {
+        margin-top: 7px;
+        margin-bottom: 7px;
+}
+
+#entries a,
+#entries a:link,
+#entries a:visited,
+#entries a:hover,
+#entries a:active {
+        color: blue;
+}
+
+/*******************************************************************/
+/* VISTA DE UNA DISCUSIÓN CONCRETA                                 */
+/*******************************************************************/
+
+#discussion {
+        background-color: #D4E6F1;
+        padding-left: 15px;
+        padding-right: 15px;
+        margin-left: 80px;
+        width: 1040px;
+}
+
+#discussion .message {
+        border-style: inset;
+        padding-left: 15px;
+        padding-right: 15px;
+}
+
+/* Mensaje normal */
+#discussion .normal {
+        background-color: #a9cce2;
+}
+
+/* Mensaje respondido que está incrustado en el que responde */
+#discussion .responded {
+        background-color: white;
+}
+
+/* Panel con el formulario para responder a un mensaje */
+#discussion #respondingPanel {
+        border-style: inset;
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: #a9cce2;
+}
+
+#discussion textarea {
+        border-style: inset;
+        border-width: 3px;
+        border-color: floralwhite;
+        height: 100px;
+        width: 1000px;
+        box-sizing: border-box;
+        resize: none;
+}
+
+#discussion p {
+        overflow-wrap: break-word;
+}
+
+#discussion a,
+#discussion a:link,
+#discussion a:visited,
+#discussion a:hover,
+#discussion a:active {
+        color: blue;
+}
+
+/* Vídeo incrustado */
+#discussion .video {
+        display: block;
+        margin: auto;
+        border-style: inset;
+        border-width: 5px;
+        background-color: #a9cce2;
+}
+
+/*******************************************************************/
+/* ABOUT                                                           */
+/*******************************************************************/
+
+#about h1 {
+        color: #4A148C;
+
+}
+
+#about h2 {
+        color: #4A148C;
+        padding-left: 30px;
+
+}
+
+#about p {
+        color: #4A148C;
+        padding-left: 30px;
+        font-size: 20px;
+}
+
+/*******************************************************************/
+/* VISTA DE LOS DATOS DE UN PERFIL CONCRETO                        */
+/*******************************************************************/
+
+#profile .lista {
+        list-style: none;
+}
+
+/*******************************************************************/
+/* FORMULARIOS PARA LA TIENDA Y EL INICIO DE SESIÓN                */
+/*******************************************************************/
+
+#store form,
+#login form,
+#signUp form {
+        color: #4A148C;
+        font-size: 20px;
+}
