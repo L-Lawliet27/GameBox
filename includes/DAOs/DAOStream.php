@@ -13,8 +13,8 @@ class DAOStream extends DAO {
         $query = <<<EOS
             SELECT *
             FROM stream
-            WHERE id = $id
-        EOS;
+            WHERE id = $id AND active = 1
+EOS;
         $row = $this->query($query)->fetch_assoc();
         return new DTOStream($row["name"], $row["platform"], $row["link"], $row["_user"], $row["discussion"], $row["id"]);
     }
@@ -23,6 +23,7 @@ class DAOStream extends DAO {
         $query = "
             SELECT *
             FROM stream
+            WHERE active = 1 
             ORDER BY (
                 SELECT COUNT(*)
                 FROM message
@@ -42,7 +43,7 @@ class DAOStream extends DAO {
     public function getRecentStreams($first, $last) {
         $query = "
             SELECT *
-            FROM stream
+            FROM stream WHERE active = 1
             ORDER BY (
                 SELECT lastTime
                 FROM discussion
@@ -62,25 +63,26 @@ class DAOStream extends DAO {
     public function getNumberOfStreams() {
         $query = <<<EOS
             SELECT COUNT(*) AS numberOfStreams
-            FROM stream
+            FROM stream WHERE active = 1
         EOS;
         return $this->query($query)->fetch_assoc()["numberOfStreams"];
     }
 
     public function insertStream(&$stream) {
         $query = <<<EOS
-            INSERT INTO stream (name, platform, link, _user, discussion)
+            INSERT INTO stream (name, platform, link, _user, discussion, active)
             VALUES (
                 "{$stream->getName()}",
                 "{$stream->getPlatform()}",
                 "{$stream->getLink()}",
                 "{$stream->getUser()}",
-                "{$stream->getDiscussion()}"
+                "{$stream->getDiscussion()}",
+                "1"
             )
         EOS;
         $this->mysqli->query($query)
             or die($this->mysqli->error . " in the line " . (__LINE__ - 1));
-        $stream->setId($this->getNumberOfStreams());
+        $stream->setId($this->mysqli->insert_id);
     }
 
     public function updateStream($id, $mod) {
@@ -92,9 +94,23 @@ class DAOStream extends DAO {
                 link="{$mod->getLink()}",
                 _user="{$mod->getUser()},
                 discussion="{$mod->getDiscussion()}"
-            WHERE id = " . $id
+            WHERE id = " . $id AND active = 1
         EOS;
         $this->mysqli->query($query)
             or die($this->mysqli->error . " in the line " . (__LINE__ - 1));
+    }
+
+    /**
+     * Inactivate a STREAM, don't delete from DB 
+     *
+     * @param  [id] $id
+     * @return [url] query
+    */
+
+    public function inactivateStream($id) {
+        $q = <<<EOS
+            UPDATE stream SET active=0 WHERE id="$id"
+EOS;
+        $this->query($q);
     }
 }

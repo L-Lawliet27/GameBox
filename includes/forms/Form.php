@@ -36,7 +36,7 @@ abstract class Form {
      *       <td>action</td>
      *       <td><code>$_SERVER['PHP_SELF']</code></td>       
      *       <td>URL asociada al atributo "action" de la etiqueta &lt;form&gt; del fomrulario y que procesará
-                 el envío del formulario.</td>
+      *           el envío del formulario.</td>
      *     </tr>
      *   </tbody>
      * </table>

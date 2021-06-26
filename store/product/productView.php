@@ -15,7 +15,12 @@ $storeContent = <<<EOS
 
         <h2 id="price">{$product->getPrice()}</h2>
 
-        <h3 id="genre">{$product->getType()}</h3>
+        <div id="buttons">
+        <button type=\"button\" onclick="window.open('{$product->getLink()}','_blank')" style="margin-left:50px;">
+        Purchase</button>
+        </div>
+
+        <h3 id="genre" style="left:655px;">{$product->getType()}</h3>
     </section>
 EOS;
 

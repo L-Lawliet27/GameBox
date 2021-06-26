@@ -35,13 +35,30 @@ if (isset($filter)) {
 
 if (!empty($games)) {
     foreach ($games as $game) {
-        $storeContent .= <<<EOS
-            <a href="gameView.php?id={$game->getId()}">
-                <i>
-                    <h2>{$game->getName()}</h2>
-                </i>
-            </a>
+
+        $delete="";
+        if(isset($_SESSION["rol"])){
+            
+            if($_SESSION["rol"] =='admin'){
+                $delete='<a class="btnInactivate" href="javascript:void(0);" 
+                        onclick="javascript:confirmAction('."'inactivateGame.php?id=".$game->getId()."'".')" title="Inactivate this Game?">
+                        <i>X </i>
+                    </a>';
+            }
+
+
+            $storeContent .= <<<EOS
+                <figure class="item">
+                    <figcaption>
+                    {$delete}
+                        <a class="infoItem" href="gameView.php?id={$game->getId()}">
+                                <h2>{$game->getName()}</h2>
+                        </a>
+                    </figcaption>
+                </figure>
 EOS;
+        }
+
     }
 }
 

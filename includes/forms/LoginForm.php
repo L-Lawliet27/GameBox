@@ -14,20 +14,25 @@ class LoginForm extends Form {
             <fieldset>
                 <legend>Please fill in your credentials to login.</legend>
                 $erroresHTML
+                
                 <div>
                     <label>Username</label>
-                    <input type="text" name="username" value="">
+                    <input type="text" name="username" autocomplete="off" id="username" value="">
+                    <span id="errorUserName"></span>
                 </div>
                 <div>
                     <label>Password</label>
-                    <input type="password" name="password">
+                    <input type="password" id="password" autocomplete="off"  name="password">
+                    <span id="errorPassword"></span>
                 </div>
+
+
                 <div>
                     <input type="submit" value="Login">
                 </div>
                 <p>Don't have an account? <a href="/GameBox/login/signUp.php">Sign-up now</a>.</p>
             </fieldset>
-        EOS;
+EOS;
 
         return $camposFormulario;
     }
@@ -61,7 +66,7 @@ class LoginForm extends Form {
             $_SESSION["rol"] = $user->getRol();
             $erroresFormulario = <<<EOS
                 /GameBox/index.php
-            EOS;
+EOS;
         }
 
         return $erroresFormulario;

@@ -14,7 +14,7 @@ class DAOMessage extends DAO {
             SELECT *
             FROM message
             WHERE id = $id AND discussion = $discussion
-        EOS;
+EOS;
         $row = $this->query($query)->fetch_assoc();
         return new DTOMessage($row["discussion"], $row["responding"], $row["_user"], $row["content"], $row["id"]);
     }
@@ -49,7 +49,7 @@ class DAOMessage extends DAO {
         $query = <<<EOS
             INSERT INTO message
             VALUES ("$id", "{$message->getDiscussion()}", "{$message->getResponding()}", "{$message->getUser()}", "{$message->getContent()}")
-        EOS;
+EOS;
         $this->mysqli->query($query)
             or die($this->mysqli->error . " in the line " . (__LINE__ - 1));
         $message->setId($id);

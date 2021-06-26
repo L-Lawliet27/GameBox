@@ -12,13 +12,25 @@ function getStreamEntryHTML($stream) {
     } else {
         $platform = "Twitch";
     }
+
+    $delete="";
+        if(isset($_SESSION["rol"])){
+            if( $_SESSION["rol"] =='admin'){
+            $delete='<a class="btnInactivate sqr" href="javascript:void(0);" 
+                        onclick="javascript:confirmAction('."'inactivateStream.php?id=".$stream->getId()."'".')" title="Inactivate this Stream?">
+                        <i>X </i>
+                    </a>';
+            }
+                
     return <<<EOS
+        {$delete}
         <a href="/GameBox/streams/stream.php?id={$stream->getId()}&page=1">
             <h4>{$stream->getName()}</h4>
         </a>
         <span>Streamer: {$stream->getUser()}</span>
         <span class="rightSpan">Platform: {$platform}</span>
-    EOS;
+EOS;
+}
 }
 
 $daoStream = new DAOStream();

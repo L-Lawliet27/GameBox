@@ -7,13 +7,26 @@ require_once(PROJECT_ROOT . "/includes/forms/CreateDiscussionForm.php");
 function getDiscussionEntryHTML($discussion) {
     $daoMessage = new DAOMessage();
     $numberOfMessages = $daoMessage->getNumberOfMessages($discussion->getId());
-    return <<<EOS
-        <a href="/GameBox/forum/discussion.php?id={$discussion->getId()}&page=1">
-            <h4>{$discussion->getName()}</h4>
-        </a>
-        <span>Author: {$discussion->getUser()}</span>
-        <span class="rightSpan">Messages: {$numberOfMessages}</span>
+
+    $delete="";
+    if(isset($_SESSION["rol"])){
+            if( $_SESSION["rol"] =='admin'){
+            $delete='<a class="btnInactivate sqr" href="javascript:void(0);" 
+                        onclick="javascript:confirmAction('."'inactivateDiscussion.php?id=".$discussion->getId()."'".')" title="Inactivate this Discussion?">
+                        <i>X </i>
+                    </a>';
+            }
+                
+
+        return <<<EOS
+            {$delete}
+            <a href="/GameBox/forum/discussion.php?id={$discussion->getId()}&page=1">
+                <h4>{$discussion->getName()}</h4>
+            </a>
+            <span>Author: {$discussion->getUser()}</span>
+            <span class="rightSpan">Messages: {$numberOfMessages}</span>
 EOS;
+    }
 }
 
 $daoDiscussion = new DAODiscussion();
@@ -49,5 +62,3 @@ foreach ($discussions as $discussion) {
 }
 
 require_once(PROJECT_ROOT . "/includes/templates/entriesListTemplate.php");
-
-?>

@@ -8,7 +8,7 @@ $leftNavContent = <<<EOS
     <ul>
         <a href="/GameBox/store/game/cover.php"><li>Games</li></a>
         <a href="/GameBox/store/product/cover.php"><li>Products</li></a>
-        <a href=""><li>Sell</li></a>
+        <a href="/GameBox/store/sell/cover.php"><li>Sell</li></a>
     </ul>
 EOS;
 

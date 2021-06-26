@@ -9,10 +9,14 @@ $daoGame->updateVisits($game->getId());
 
 $buttons = "";
 if ($game->getPhysical()) {
-    $buttons .= "<button type=\"button\">Physical</button>";
+    $buttons .= "<button type=\"button\" onclick=\"window.open('".$game->getLink()."','_blank')\">Physical</button>";
+}else{
+    $buttons .= "<button type=\"button\" disabled>Physical</button>";
 }
 if ($game->getDigital()) {
-    $buttons .= "<button type=\"button\">Digital</button>";
+    $buttons .= "<button type=\"button\" onclick=\"window.open('".$game->getLink()."','_blank')\">Digital</button>";
+}else{
+    $buttons .= "<button type=\"button\" disabled>Digital</button>";
 }
 
 $storeContent = <<<EOS

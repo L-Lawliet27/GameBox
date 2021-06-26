@@ -14,7 +14,8 @@ class DAOProduct extends DAO {
         $q = <<<EOS
             SELECT *
             FROM product
-        EOS;
+            WHERE active = 1
+EOS;
         $r = $this->query($q);
         $products = array();
 
@@ -30,8 +31,8 @@ class DAOProduct extends DAO {
         $q = <<<EOS
             SELECT *
             FROM product
-            WHERE id="$id"
-        EOS;
+            WHERE id="$id" AND active = 1
+EOS;
         $r = $this->query($q);
 
         if ($r && $r->num_rows == 1) {
@@ -49,8 +50,8 @@ class DAOProduct extends DAO {
         $q = <<<EOS
             SELECT *
             FROM product
-            WHERE name="$name"
-        EOS;
+            WHERE name="$name" AND active = 1
+EOS;
         $r = $this->query($q);
 
         if ($r && $r->num_rows == 1) {
@@ -67,8 +68,8 @@ class DAOProduct extends DAO {
         $q = <<<EOS
             SELECT *
             FROM product
-            WHERE name="$name"
-        EOS;
+            WHERE name="$name" AND active = 1
+EOS;
         $r = $this->query($q);
         $productsWithName = array();
 
@@ -84,8 +85,8 @@ class DAOProduct extends DAO {
         $q = <<<EOS
             SELECT *
             FROM product
-            WHERE _user="$_user"
-        EOS;
+            WHERE _user="$_user" AND active = 1
+EOS;
         $r = $this->query($q);
         $productsByUser = array();
 
@@ -101,8 +102,8 @@ class DAOProduct extends DAO {
         $q = <<<EOS
             SELECT *
             FROM product
-            WHERE type="console"
-        EOS;
+            WHERE type="console" AND active = 1
+EOS;
         $r = $this->query($q);
         $consoles = array();
 
@@ -118,8 +119,8 @@ class DAOProduct extends DAO {
         $q = <<<EOS
             SELECT *
             FROM product
-            WHERE type="equipment"
-        EOS;
+            WHERE type="equipment" AND active = 1
+EOS;
         $r = $this->query($q);
         $equipments = array();
 
@@ -133,22 +134,37 @@ class DAOProduct extends DAO {
 
     public function addProduct($product) {
         $q = <<<EOS
-            INSERT INTO product (name, price, _user, type, description, link)
+            INSERT INTO product (name, price, _user, type, description, link, active)
             VALUES (
                 "{$product->getName()}",
                 "{$product->getPrice()}",
                 "{$product->getUser()}",
                 "{$product->getType()}",
                 "{$product->getDescription()}",
-                "{$product->getLink()}"
+                "{$product->getLink()}",
+                "1"
             )
-        EOS;
+EOS;
 
         $this->query($q);
     }
 
     private function createProduct($n) {
-        return new DTOProduct($n["name"], $n["price"], $n["_user"], $n["type"], $n["description"], $n["link"], $n["id"]);
+        return new DTOProduct($n["name"], $n["price"], $n["_user"], $n["type"], $n["description"], $n["link"], $n["id"], '1');
+    }
+
+
+    /**
+     * Inactivate a PRODUCT, don't delete from DB 
+     *
+     * @param  [id] $id
+     * @return [url] query
+    */
+
+    public function inactivateProduct($id) {
+        $q = <<<EOS
+            UPDATE product SET active=0 WHERE id="$id"
+EOS;
+        $this->query($q);
     }
 }
-?>

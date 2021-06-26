@@ -21,8 +21,8 @@ class SignUpForm extends Form {
                 </div>
                 <div>
                     <label>Who you are?: </label>
-                    <input type="checkbox" name="rol" value="gamer"/>Gamer
-                    <input type="checkbox" name="rol" value="developer"/>Developer
+                    <input type="radio" name="rol" class="uRol" value="gamer"/>Gamer
+                    <input type="radio" name="rol" class="uRol" value="developer"/>Developer
                 </div>
                 <div>
                     <label>Password</label>
@@ -37,7 +37,7 @@ class SignUpForm extends Form {
                 </div>
                     <p>Already have an account? <a href="/GameBox/login/login.php">Login here</a>.</p>
             </fieldset>
-        EOS;
+EOS;
 
         return $camposFormulario;
     }
@@ -90,7 +90,7 @@ class SignUpForm extends Form {
             $_SESSION["rol"] = $user->getRol();
             $erroresFormulario = <<<EOS
                 /GameBox/index.php
-            EOS;
+EOS;
         }
 
         return $erroresFormulario;

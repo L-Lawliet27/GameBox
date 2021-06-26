@@ -9,6 +9,8 @@ require_once(__DIR__ . "/../config.php");
     <meta charset="UTF-8">
     <title> <?= $title ?> </title>
     <link rel="stylesheet" type="text/css" href="/GameBox/style.css">
+    <script type="text/javascript" src="/GameBox/js/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="/GameBox/js/main.js"></script>
 </head>
 
 <body>
